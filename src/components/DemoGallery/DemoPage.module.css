@@ -1,0 +1,54 @@
+.try {
+    padding-top: 20px;
+}
+
+.heroButtons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 50px;
+}
+
+.getStarted {
+    font-size: 18px;
+    line-height: 28px;
+    padding: 12px 24px;
+    background: #ed3545;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+}
+
+.getStarted:hover {
+    color: white;
+    background: #ad1934;
+}
+
+@media only screen and (max-device-width: 450px) {
+    .codeBlock code {
+        font-size: 0.8em;
+    }
+
+    .heroButtons {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .heroBanner button {
+        opacity: 0;
+    }
+}
+
+.slider_image {
+    aspect-ratio: 4/3;
+    height: 600px;
+}
+
+.slider_image_no_text {
+    height: 700px
+}
+
+/* .carousel .slide img {
+    aspect-ratio: 4/3;
+    height: 300px;
+} */

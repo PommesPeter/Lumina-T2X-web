@@ -1,0 +1,45 @@
+---
+id: setting-up
+title: "Setting up"
+description: Technical detail about Lumina-T2X
+---
+
+Lumina-T2X is built on top of our proposed **Flow-based Large Diffusion Transformer (Flag-DiT)**, which integrates Large-DiT architecture and flow-matching objective. This design enables end-to-end, text-to-X conditional training tailored to various modalities. Below, we delve into the four components of Lumina-T2X that drive its innovative performance:
+- **Video Encoding**:  By treating various modal inputs as frame sequences, we utilize specific frame encoders (e.g., SD 1.5 VAE) to transform these inputs into latent frames, facilitating a unified handling of diverse modalities. Nextline token and next frame token are proposed to control the resolution and temporal span of generated image and video.  
+- **Text Encoding**: Our strategy incorporates a suite of openly available Large Language Models (LLMs) of varying sizes to serve as the text encoder, optimizing text conditioning.
+- **Input & Target Construction**: Lumina-T2X adopts the flow-matching objective to construct the input and target for simplicity and flexibility. For any given timestep t and a pre-defined schedule \alpha_t, \beta_t, we can directly construct the model input as the interpolation between data and noise, x_t=\alpha_tx+\beta_t\epsilon and construct the model target as the velocity by taking the time derivative, v_t=\dot\alpha_tx+\dot\beta_t\epsilon. In our setting, we simply set x_t=tx+(1-t)\epsilon and v_t=x-\epsilon. We also adopt time resampling to sample timestep from a log-norm distribution to emphasize the learning of intermediate timestep.
+- **Prediction**: Receiving the noisy input, the Large DiT Blocks integrate text conditioning via zero-init attention to predict the target velocity.
+
+<img src="/img/framework/framework-detail.png" />
+
+Integration of Zero-init. Attention with Flag-DiT for Text Conditioning
+
+TDB
+
+## Mixture of Captioner
+
+<img src="/img/framework/mixture-of-captioners.png" />
+
+TDB
+
+## Image Collection
+
+###  JourneyDB
+
+### Laion
+
+### High aesthetics and High resolution 
+
+### Captioning System
+
+## Configurations of Lumina-T2X
+
+Lumina-T2X is not a single model. Its model configuration covers diverse combinations of different sizes of text encoders, different sizes of Large-DiT, different prediction targets, different VAE, RoPe, and Image Augmentation. Such diverse combinations can provide flexible choices for users to be applied for different settings. For example, large text encoders usually increase image-text alignment with the cost of significantly increased GPU memory costs due to the storage of 7B or 13B parameters in GPU. CLIP-L/G text encoder can provide a good balance for GPU memory requirement and T2T generation. Different parameter choices for denoising backbone can also provide a balance between inference speed and image generation quality. The lumina-T2X project aims to cover all useful configuration combinations to ease the use of our pretrained T2X model. 
+Diverse Text Encoders:
+Flexible Parameter size of Large-DiT
+Prediction Target
+VAE
+RoPe
+Image Augmentation
+Generation Order
+

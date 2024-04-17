@@ -1,0 +1,27 @@
+---
+id: introduction
+title: Introduction
+description: Intro about Lumina-T2X
+---
+
+We are excited to unveil Lumina-T2X, a unified framework that seamlessly transforms text into a variety of modalities, including images, videos, multi-view images, and audio. 
+At the heart of Lumina-T2X lies the Flow-based Large Diffusion Transformer (Flag-DiT), which supports up to 7B parameters and 512K token generation. 
+We will be open-sourcing both the training codes and pre-trained models to foster further research and development.
+
+<img src="/img/framework/framework2.jpg"> </img>
+
+
+## 🛠 Features
+
+- Flow-based Large Diffusion Transformer (Flag-DiT): Diffusion Transformer (DiT) has been validated as an efficient denoiser backbone for generating high-fidelity images (DiT, SiT, and Pixelart-Alpha) and videos (Sora). Building on DiT, LLaMA, and flow matching, we propose a Flag-DiT as a scalable, efficient, and stable framework for generating high-resolution images and long video clips. We scale up the size of DiT from 600 million to 7 billion parameters, and increase the sequence length from 1K to 512K tokens, equipped with flow-matching to further improve the convergence speed. We believe Flag-DiT can serve as a universal foundational backbone for generative modeling across various modalities.
+
+- Different Modalities, One Framework: Lumina-T2X introduces a unified approach by tokenizing diverse data types — ranging from images and videos to audio spectrograms — into consistent patch sequences. These multi-dimensional tokens are then transformed into one-dimensional sequences processed by Flag-DiT, enabling the framework to generate content across any modality from simple textual inputs. While we currently train individual generators for each modality due to data imbalance, our vision extends toward creating a universal generator capable of text-to-any generation in the future.
+
+- Scaling Parameter and Token Length: The Flag-DiT framework enables us to scale parameters from 600M to 7B and extend the token length from 1K to 512K, maintaining stability throughout the training process. This improvement significantly boosts sample quality and unlocks new possibilities for generating extremely long and high-resolution images/videos. Furthermore, Lumina-T2X is provided with various model sizes to cater to diverse computational needs. 
+- Generating Higher-Res Images Unseen during Training: Lumina-T2X exhibits exciting generalization capabilities that can produce higher resolution contents than its training data due to the introduction of RoPe and ‘newline’ token, e.g. training on 1024*1024 images and generating 2048*2048 images. This unique feature is further augmented by advanced inference techniques, such as NTK-aware scaled rope, diffusion time shifting, and proportional attention, allowing for photorealistic, high-resolution generation without additional training.
+
+- Low-computing Resources: Our empirical observations reveal that using larger models, high-resolution images, and extended video clips significantly boosts the convergence speed of diffusion models with improved visual quality and better image-text alignment. Although longer token length increases the duration per iteration due to the quadratic complexity of transformers, it significantly shortens the overall training time by decreasing the number of iterations needed. Additionally, by utilizing carefully curated text-image and text-video pairs with high aesthetic frames and detailed captions, our Lumina-T2X is capable of producing high-resolution images and coherent videos with minimal computing requirements.
+
+- Support Model, Sequence Parallel and FSDP : The velocity prediction backbone of Lumina-T2X are highly deeply rooted from the architecture of Large Language Models (LLMs). Thus, it can  easily shard model weights, sequence length, optimizer states, weight storage and gradient communications across GPUs for scaling model size and sequence length. This practice can significantly increase the upper bound of model parameters and sequence length supported by Lumina-T2X framework. 
+
+- Mixture of Captioner : 
