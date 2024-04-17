@@ -208,8 +208,8 @@ module.exports = {
         },
         colorMode: {
             defaultMode: 'light',
-            disableSwitch: true,
-            respectPrefersColorScheme: true,
+            disableSwitch: false,
+            respectPrefersColorScheme: false,
         },
         prism: {
             defaultLanguage: 'typescript',
