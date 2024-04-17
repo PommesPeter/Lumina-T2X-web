@@ -231,7 +231,7 @@ function Deployment() {
 }
 
 export default function Home() {
-    const SvgLogo = require('../../static/img/crawlee-logo.svg').default;
+    const SvgLogo = require('../../static/img/lumina-logo.png').default;
     const { siteConfig } = useDocusaurusContext();
     return (
         <Layout
