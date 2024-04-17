@@ -75,22 +75,22 @@ module.exports = {
                         from: '/docs',
                         to: '/docs/quick-start',
                     },
-                    {
-                        from: '/docs/next',
-                        to: '/docs/next/quick-start',
-                    },
-                    {
-                        from: '/docs/guides/environment-variables',
-                        to: '/docs/guides/configuration',
-                    },
+                    // {
+                    //     from: '/docs/next',
+                    //     to: '/docs/next/quick-start',
+                    // },
+                    // {
+                    //     from: '/docs/guides/environment-variables',
+                    //     to: '/docs/guides/configuration',
+                    // },
                     {
                         from: '/docs/guides/getting-started',
                         to: '/docs/introduction',
                     },
-                    {
-                        from: '/docs/guides/apify-platform',
-                        to: '/docs/deployment/apify-platform',
-                    },
+                    // {
+                    //     from: '/docs/guides/apify-platform',
+                    //     to: '/docs/deployment/apify-platform',
+                    // },
                 ],
                 createRedirects(existingPath) {
                     if (!existingPath.endsWith('/')) {
