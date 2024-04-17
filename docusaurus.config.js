@@ -208,7 +208,7 @@ module.exports = {
         },
         colorMode: {
             defaultMode: 'light',
-            disableSwitch: false,
+            disableSwitch: true,
             respectPrefersColorScheme: true,
         },
         prism: {
