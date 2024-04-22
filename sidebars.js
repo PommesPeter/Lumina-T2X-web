@@ -15,7 +15,25 @@ module.exports = {
         },
         {
             type: 'category',
+            label: 'Lumina Family',
+            collapsed: false,
+            link: {
+                type: 'generated-index',
+                title: 'Lumina Family',
+                slug: '/lumina-family',
+                keywords: ['lumina-family'],
+            },
+            items: [
+                'lumina-family/lumina-t2i/lumina_t2i_introduction',
+                'lumina-family/lumina-t2i/installation',
+                'lumina-family/lumina-t2i/training',
+                'lumina-family/lumina-t2i/inference',
+            ],
+        },
+        {
+            type: 'category',
             label: 'Demos',
+            collapsed: false,
             link: {
                 type: 'generated-index',
                 title: 'Demos',

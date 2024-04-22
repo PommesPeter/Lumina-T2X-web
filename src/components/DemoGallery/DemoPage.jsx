@@ -42,13 +42,13 @@ const DemoList = [
     },
     {
         imgUrl: '/img/demo_gallery/style_consisten_gen.png',
-        title: 'Style Consistent Generation',
+        title: 'Consistent-Style Generation',
         text: '',
         buttonLink: '',
         buttonText: ''
     },    
     {
-        imgUrl: '/img/demo_gallery/resolution_extrapolation.jpg',
+        imgUrl: '/img/demo_gallery/resolution_extrapolation/2.jpg',
         title: 'Resolution Extrapolation',
         text: '',
         buttonLink: '',
@@ -64,6 +64,13 @@ const DemoList = [
     {
         imgUrl: '/img/demo_gallery/multi_cap_gen_2.png',
         title: 'Multi-Caption Generation',
+        text: '',
+        buttonLink: '',
+        buttonText: ''
+    },
+    {
+        imgUrl: '/img/demo_gallery/edit/edit_01.png',
+        title: 'High-res. Image Editing',
         text: '',
         buttonLink: '',
         buttonText: ''
