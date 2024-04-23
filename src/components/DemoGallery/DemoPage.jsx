@@ -129,7 +129,7 @@ function DemoPage() {
     return (
         <section className={clsx(styles.try, 'container')}>
             <div className="col" style={{ maxWidth: "1000px" }}>
-                <h2>Demos of Lumina-T2I </h2>
+                <h2>Demos of Lumina-T2I</h2>
                 <Carousel
                     showArrows={true}
                     autoPlay={true}
