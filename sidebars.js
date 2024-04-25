@@ -43,7 +43,7 @@ module.exports = {
                 'demos/demo-of-image',
                 'demos/demo-of-video',
                 'demos/demo-of-audio',
-                'demos/demo-of-multi-view',
+                'demos/demo-of-multi-views',
             ],
         },
         // {

@@ -11758,6 +11758,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-before-after-slider-component@npm:^1.1.8":
+  version: 1.1.8
+  resolution: "react-before-after-slider-component@npm:1.1.8"
+  peerDependencies:
+    react: ">=17.0.2"
+    react-dom: ">=17.0.2"
+  checksum: 10c0/1b0d3f18ffbf84b0ac081d20440444ca548144e79598badf33e7e574dcdd1650831930746dd847db3f7ed296a394a5da546474aec1e881a2bd52642f548f6730
+  languageName: node
+  linkType: hard
+
 "react-dev-utils@npm:^12.0.1":
   version: 12.0.1
   resolution: "react-dev-utils@npm:12.0.1"
@@ -12497,6 +12507,7 @@ __metadata:
     prop-types: "npm:^15.8.1"
     raw-loader: "npm:^4.0.2"
     react: "npm:^18.2.0"
+    react-before-after-slider-component: "npm:^1.1.8"
     react-dom: "npm:^18.2.0"
     react-lite-youtube-embed: "npm:^2.3.52"
     react-player: "npm:^2.16.0"
