@@ -1,26 +1,71 @@
 ---
 id: setting-up
-title: "Setting up"
-description: Technical detail about Lumina-T2X
+title: "Technical Details"
+description: Technical details about Lumina-T2X
 ---
 
-Lumina-T2X is built on top of our proposed **Flow-based Large Diffusion Transformer (Flag-DiT)**, which integrates Large-DiT architecture and flow-matching objective. This design enables end-to-end, text-to-X conditional training tailored to various modalities. Below, we delve into the four components of Lumina-T2X that drive its innovative performance:
-- **Video Encoding**:  By treating various modal inputs as frame sequences, we utilize specific frame encoders (e.g., SD 1.5 VAE) to transform these inputs into latent frames, facilitating a unified handling of diverse modalities. Nextline token and next frame token are proposed to control the resolution and temporal span of generated image and video.  
-- **Text Encoding**: Our strategy incorporates a suite of openly available Large Language Models (LLMs) of varying sizes to serve as the text encoder, optimizing text conditioning.
-- **Input & Target Construction**: Lumina-T2X adopts the flow-matching objective to construct the input and target for simplicity and flexibility. For any given timestep t and a pre-defined schedule \alpha_t, \beta_t, we can directly construct the model input as the interpolation between data and noise, x_t=\alpha_tx+\beta_t\epsilon and construct the model target as the velocity by taking the time derivative, v_t=\dot\alpha_tx+\dot\beta_t\epsilon. In our setting, we simply set x_t=tx+(1-t)\epsilon and v_t=x-\epsilon. We also adopt time resampling to sample timestep from a log-norm distribution to emphasize the learning of intermediate timestep.
-- **Prediction**: Receiving the noisy input, the Large DiT Blocks integrate text conditioning via zero-init attention to predict the target velocity.
+## Lumina-T2I
 
-<img src="/img/framework/framework-detail.png" />
+<img src="/img/framework/unify_all.png" />
 
-Integration of Zero-init. Attention with Flag-DiT for Text Conditioning
+### Tuning-free Resolution Extrapolation
 
-TDB
+Due to exponential growth in computational demand and data scarcity, existing Text-to-Image models are generally limited to 1K resolution. Thus, there is a significant demand for low-cost, high-resolution extrapolation approaches. 
 
-## Mixture of Captioner
+The translational invariance of RoPE enhances Lumina-T2X's potential for resolution extrapolation, allowing it to generate images at out-of-domain resolutions. Inspired by the practices in previous arts, we further adopt three techniques that can help unleash Lumina-T2X's hidden potential of test-time resolution extrapolation: 
 
-<img src="/img/framework/mixture-of-captioners.png" />
+1. NTK-aware scaled RoPE that rescales the rotary base of RoPE to achieve a gradual position interpolation of the low-frequency components.
+2. Time-shifting that reschedules the timesteps to ensure consistent SNR across denoising processes of different resolutions.
+3. Proportional Attention that rescales the attention score to ensure stable attention entropy across various sequence lengths. 
 
-TDB
+The visualization of resolution extrapolation can be found in below. In addition to generating images with large sizes, we observe that such resolution extrapolation can even improve the quality of the generated images, **serving as a free lunch**.
+
+<img src="/img/framework/ntk_rope_new.png" />
+
+### Style-consistent Generation
+
+The transformer-based diffusion model architecture makes Lumina-T2I naturally suitable for self-attention manipulation applications like style-consistent generation. 
+
+A representative approach is shared attention, which enables generating style-aligned batches without specific tuning of the model. Specifically, it uses the first image in a batch as the anchor/reference image, allowing the queries from other images in the batch to access the keys and values of the first image during the self-attention operation. 
+
+This kind of information leakage effectively promotes a consistent style across the images in a batch. Typically, this can be achieved by concatenating the keys and values of the first image with those of other images before self-attention. 
+
+However, in diffusion transformers, it is important to note that keys from two images contain duplicated positional embeddings, which can disrupt the model's awareness of spatial structures. 
+
+Therefore, we need to ensure that key/value sharing occurs before RoPE, which can be regarded as appending a reference image sequence to the target image sequence. 
+
+### Compositional Generation
+
+Compositional, or multi-concepts text-to-image generation, which requires the model to generate multiple subjects at different regions of a single image, is seamlessly supported by our transformer-based framework. Users can define $N$ different prompts and $N$ bounding boxes as masks for corresponding prompts. 
+
+Our key insight is to restrict the cross-attention operation of each prompt within the corresponding region during sampling. More specifically, at each timestep, we crop the noisy data $x_t$ using each mask and reshape the resulting sub-regions into a sub-region batch $\{x_t^1, x_t^2, ..., x_t^N\}$, corresponding to the prompt batch $\{y^1, y^2, ..., y^N\}$. 
+
+Then, we compute cross-attention using this sub-region batch and prompt batch and manipulate the output back to the complete data sample. We only apply this operation to cross-attention layers to ensure the text information is injected into different regions while keeping the self-attention layers unchanged to ensure the final image is coherent and harmonic. 
+
+We also set the global text condition as the embedding of the complete prompt, i.e., concatenation of all prompts, to enhance global coherence.
+
+### High-Res. Editing
+
+Beyond high-resolution generation, our Lumina-T2I can also perform high-resolution image editing. Considering the distinct features of different editing types, we first classify image editing into two major categories, namely style editing and subject editing. 
+
+For style editing, we aim to change or enhance the overall visual style, such as color, environment, and texture, without modifying the main object of the image, while subject editing aims to modify the content of the main object, such as addition, replacement, and removal, without affecting the overall visual style. 
+
+Then, we leverage a simple yet effective method to achieve this image editing within the Lumina-T2I framework. Specifically, given an input image, we first encode it into latent space using the VAE encoder and interpolate the image latent with noise to get the intermediate noisy latent at time $\lambda$. Then, we can solve the Flow ODE from $\lambda$ to $1.0$ with desired prompts for editing as text conditions. 
+
+Due to the powerful generation capability of our model, it can faithfully perform the ideal editing while preserving the original details in high resolution. However, in style editing, we find that the mean and variance are highly correlated with image styles. 
+
+Therefore, the above method still suffers from style leakage since the interpolated noisy data still retains the style of the original image in its mean and variance. To eliminate the influence of the original image styles, we perform channel-wise normalization on input images, transforming them to zero mean and unit variance. 
+
+### Creative Super-resolution as Image Editing
+
+By utilizing the high-resolution editing framework, we can perform creative super-resolution over a low-resolution upsampled image. Different from conventional superresolution, our training-free editing framework can enhance details without accurately maintaining the fidelity of low-resolution images. 
+
+After upsampling the low-resolution image as a reference, we can run the Flow ODE solver from an intermediate time $\eta$ by interpolating between the upsampled image and noise. This method not only injects the global semantics into the high-resolution image but also effectively avoids the structure artifacts in the early steps of the Flow ODE. 
+
+In the future, we will explore training-based approaches to better control the trade-off between creativity and fidelity over low-resolution images. 
+
+
+{/* TDB
 
 ## Image Collection
 
@@ -42,4 +87,4 @@ VAE
 RoPe
 Image Augmentation
 Generation Order
-
+ */}

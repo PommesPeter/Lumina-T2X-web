@@ -1,9 +1,31 @@
 ---
 id: demo-of-video
-title: "Demo of Video Generation"
+title: "Video Generation"
 description: Demo for Video Generation
 ---
 
-## Short video generation
+import ReactPlayer from 'react-player'
 
-## Long video generation
+## Short Video Generation
+
+### 720P Videos
+
+<p align="center">
+    <ReactPlayer playing controls url='/videos/video_720p_1_original.mp4' />
+    <br/>
+    <ReactPlayer playing controls url='/videos/video_720p_2_original.mp4' />
+</p>
+
+### 360P Videos
+
+<p align="center">
+    <ReactPlayer playing controls url='/videos/video_new.mp4' />
+</p>
+
+## Long Video Generation
+
+<p align="center">
+    <ReactPlayer playing controls url='/videos/long_1.mp4' />
+    <br/>
+    <ReactPlayer playing controls url='/videos/long_2.mp4' />
+</p>

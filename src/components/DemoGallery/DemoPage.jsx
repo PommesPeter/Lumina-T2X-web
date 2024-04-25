@@ -56,14 +56,14 @@ const DemoList = [
     },
     {
         imgUrl: '/img/demo_gallery/multi_cap_gen_1.png',
-        title: 'Multi-Caption Generation',
+        title: 'Compositional Generation',
         text: '',
         buttonLink: '',
         buttonText: ''
     },
     {
         imgUrl: '/img/demo_gallery/multi_cap_gen_2.png',
-        title: 'Multi-Caption Generation',
+        title: 'Compositional Generation',
         text: '',
         buttonLink: '',
         buttonText: ''

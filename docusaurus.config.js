@@ -1,5 +1,7 @@
 /* eslint-disable global-require,import/no-extraneous-dependencies */
 const webpack = require('webpack');
+const math = require('remark-math');
+const katex = require('rehype-katex');
 const { externalLinkProcessor } = require('./tools/utils/externalLink');
 
 /** @type {Partial<import('@docusaurus/types').DocusaurusConfig>} */
@@ -34,7 +36,8 @@ module.exports = {
                     showLastUpdateTime: true,
                     path: './docs',
                     sidebarPath: './sidebars.js',
-                    rehypePlugins: [externalLinkProcessor],
+                    remarkPlugins: [math],
+                    rehypePlugins: [externalLinkProcessor, katex],
                     // disableVersioning: !!process.env.CRAWLEE_DOCS_FAST,
                     disableVersioning: true,
                     editUrl: (doc) => {
@@ -51,6 +54,16 @@ module.exports = {
             }),
         ],
     ]),
+    stylesheets: [
+        {
+          href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+          type: 'text/css',
+          integrity:
+            'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+          crossorigin: 'anonymous',
+          strict: false
+        },
+      ],
     plugins: [
         // [
         //     'docusaurus-plugin-typedoc-api',

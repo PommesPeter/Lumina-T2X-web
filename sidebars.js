@@ -25,9 +25,8 @@ module.exports = {
             },
             items: [
                 'lumina-family/lumina-t2i/lumina_t2i_introduction',
-                'lumina-family/lumina-t2i/installation',
-                'lumina-family/lumina-t2i/training',
-                'lumina-family/lumina-t2i/inference',
+                'lumina-family/lumina-t2v/lumina_t2v_introduction',
+                
             ],
         },
         {
