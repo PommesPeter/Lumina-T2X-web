@@ -4,6 +4,9 @@ title: "Image Generation"
 description: Demo for Image Generation
 ---
 
+import ReactBeforeSliderComponent from 'react-before-after-slider-component';
+import 'react-before-after-slider-component/dist/build.css';
+
 ## Single Image Generation
 
 A serene twilight beach scene with silhouetted palm trees and bioluminescent waves, digital oil painting
@@ -133,7 +136,7 @@ An old man, portrayed as a retro superhero, stands in the streets of New York Ci
 - **Upper Right**: A post-apocalyptic world where nature has reclaimed the land and mutated creatures roam.
 - **Bottom Left**: An old man, portrayed as a retro superhero, stands in the streets of New York City at night.
 - **Bottom Right**: A mysterious portal leading to another dimension, with swirling vortexes of light and energy.
-WZ
+
 <img src="/img/demo_gallery/multi_captions/2.png" />
 
 ---
@@ -163,6 +166,29 @@ WZ
 ## Creative Super-resolution as Image Editing
 
 <img src="/img/demo_gallery/edit/super_res.png" />
+
+export const FIRST_IMAGE = {
+  imageUrl: '/after_before/image9.png'
+};
+export const SECOND_IMAGE = {
+  imageUrl: '/after_before/image10.png'
+};
+
+<div align="center" >
+    <p style={{width: "50%", display: "flex", }}>
+    <ReactBeforeSliderComponent
+        firstImage={FIRST_IMAGE}
+        secondImage={SECOND_IMAGE}  
+    />
+    </p>
+    <p style={{width: "50%"}}>
+    <ReactBeforeSliderComponent
+        firstImage={FIRST_IMAGE}
+        secondImage={SECOND_IMAGE}  
+    />
+    </p>
+</div>
+
 
 ## High-res. Image Editing
 

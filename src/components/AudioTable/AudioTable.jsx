@@ -52,7 +52,7 @@ function AudioItem({
 }) {
 
     return (
-        <table class="table" align="center" style={{ tableLayout: 'fixed', wordBreak: 'break-word', width: '100%' }}>
+        <table className="table" align="center" style={{ tableLayout: 'fixed', wordBreak: 'break-word', width: '100%' }}>
         <thead>
         <tr>
             <td scope="col" width="33%" colSpan={2}>
