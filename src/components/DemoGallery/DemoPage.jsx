@@ -34,19 +34,19 @@ const DemoList = [
         buttonText: ''
     },
     {
-        imgUrl: '/img/demo_gallery/arbitrary_resolution_ratio_gen_part_2.png',
-        title: 'Arbitrary Aspect Ratio Generation',
-        text: '',
-        buttonLink: '',
-        buttonText: ''
-    },
-    {
         imgUrl: '/img/demo_gallery/style_consisten_gen.png',
         title: 'Consistent-Style Generation',
         text: '',
         buttonLink: '',
         buttonText: ''
     },    
+    {
+        imgUrl: '/img/demo_gallery/arbitrary_resolution_ratio_gen_part_2.png',
+        title: 'Arbitrary Aspect Ratio Generation',
+        text: '',
+        buttonLink: '',
+        buttonText: ''
+    },
     {
         imgUrl: '/img/demo_gallery/resolution_extrapolation/2.jpg',
         title: 'Resolution Extrapolation',
@@ -62,6 +62,13 @@ const DemoList = [
         buttonText: ''
     },
     {
+        imgUrl: '/img/demo_gallery/edit/edit_01.png',
+        title: 'High-res. Image Editing',
+        text: '',
+        buttonLink: '',
+        buttonText: ''
+    },
+    {
         imgUrl: '/img/demo_gallery/multi_cap_gen_2.png',
         title: 'Compositional Generation',
         text: '',
@@ -69,15 +76,8 @@ const DemoList = [
         buttonText: ''
     },
     {
-        imgUrl: '/img/demo_gallery/edit/edit_01.png',
-        title: 'High-res. Image Editing',
-        text: '',
-        buttonLink: '',
-        buttonText: ''
-    },
-    {
-        imgUrl: '/img/demo_gallery/edit/edit_01.png',
-        title: 'High-res. Image Editing',
+        imgUrl: '/img/demo_gallery/edit/super_res.png',
+        title: 'Creative Super-resolution as Image Editing',
         text: '',
         buttonLink: '',
         buttonText: ''
@@ -135,7 +135,7 @@ function DemoSliderItem({
 function DemoPage() {
     return (
         <section className={clsx(styles.try, 'container')}>
-            <div className="col" style={{ maxWidth: "1000px" }}>
+            <div className="col" style={{ maxWidth: "80%" }}>
                 <h2>Lumina-T2I - Image Generation</h2>
                 <Carousel
                     showArrows={true}
@@ -149,7 +149,8 @@ function DemoPage() {
                     ))}
 
                 </Carousel>
-
+                
+                
             </div>
         </section>
     );

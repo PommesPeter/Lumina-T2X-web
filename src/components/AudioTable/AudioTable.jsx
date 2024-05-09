@@ -40,8 +40,8 @@ const AudioList = [
     },
     {
         prompt: "Several large bells ring.",
-        auUrl: "/audios/Several_large_bells_ring.wav",
-        augtUrl: "/audios/Several_large_bells_ring_gt.wav"
+        auUrl: "/audios/several_large_bells_ring.wav",
+        augtUrl: "/audios/several_large_bells_ring_gt.wav"
     },
 ]
 
