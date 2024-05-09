@@ -52,7 +52,7 @@ export default function DocItemLayout({ children }) {
                     </article>
                     <DocItemPaginator/>
 
-                    <Giscus
+                    {/* <Giscus
                         id="giscus-comments"
                         repo="apify/crawlee"
                         repoId="MDEwOlJlcG9zaXRvcnk2NjY3MDgxOQ="
@@ -65,7 +65,7 @@ export default function DocItemLayout({ children }) {
                         theme={colorMode}
                         lang="en"
                         strict="1"
-                    />
+                    /> */}
                 </div>
             </div>
 

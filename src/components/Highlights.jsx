@@ -8,58 +8,56 @@ const FeatureList = [
         Svg: require('../../static/img/features/runs-on-js.svg').default,
         description: (
             <>
-                Building on the efficient DiT and flow matching, we introduce Flag-DiT—a scalable framework capable of generating high-resolution images and extended video clips. 
-                By increasing DiT from 600 million to 7 billion parameters and sequence length to 512K tokens, Flag-DiT enhances convergence speed and serves as a versatile backbone for diverse generative modeling.
+                Lumina-T2X is trained **with the flow matching object**. To increase training stability and model scalability, we support many techniques, such as RoPE, RMSNorm, and KQ-norm, **demonstrating faster training convergence, stable training dynamics, and a simplified pipeline**.
             </>
         ),
     },
     {
-        title: 'Different Modalities, One Framework',
+        title: 'Any Modalities with one Framework',
         Svg: require('../../static/img/features/fingerprints.svg').default,
         description: (
             <>
-                Lumina-T2X tokenizes various data types—images, videos, and audio spectrograms—into uniform patch sequences. These are transformed into one-dimensional sequences by Flag-DiT, allowing generation across any modality from textual inputs. While now we train separate generators for each modality, our goal is a universal text-to-any generator.
+            Lumina-T2X tokenizes images, videos, multi-views of 3D objects, and spectrograms into one-dimensional sequences.
             </>
         ),
     },
     {
-        title: 'Scaling Parameter and Token Length',
+        title: 'Any Aspect Ratio with one framework',
         Svg: require('../../static/img/features/works-everywhere.svg').default,
         description: (
             <>
-                The Flag-DiT framework enables us to scale parameters from 600M to 7B and extend the token length from 1K to 512K, maintaining stability throughout the training process. This improvement significantly boosts sample quality and unlocks new possibilities for generating extremely long and high-resolution images/videos. Furthermore, Lumina-T2X is provided with various model sizes to cater to diverse computational needs.
+                Lumina-T2X can naturally **encode any modality—regardless of resolution, aspect ratios, and temporal durations into a unified 1-D token sequence** akin to LLMs, by utilizing Flag-DiT with text conditioning to iteratively transform noise into outputs across any modality, resolution, and duration during inference time.
             </>
         ),
     },
     {
-        title: 'Generating Higher-Res Images Unseen during Training',
+        title: 'Any Duration with one fraemwork',
         Svg: require('../../static/img/features/auto-scaling.svg').default,
         description: (
             <>
-                 Lumina-T2X exhibits exciting generalization capabilities that can produce higher resolution contents than its training data due to the introduction of RoPe and ‘newline’ token, e.g. training on 1024*1024 images and generating 2048*2048 images. This unique feature is further augmented by advanced inference techniques, such as NTK-aware scaled rope, diffusion time shifting, and proportional attention, allowing for photorealistic, high-resolution generation without additional training.
+                 Due to the use of `nextline` and `nextframe` tokens, our model can **support resolution extrapolation**, which allows the generation of resolutions out-of-domain that **were unseen during training**.
             </>
         ),
     },
     {
-        title: 'Low-computing Resources',
+        title: 'Low Training Resource',
         Svg: require('../../static/img/features/storage.svg').default,
         description: (
             <>
-                Our tests show that larger models and higher-resolution media enhance the speed and quality of diffusion models, improving alignment between images and text. 
-                Although longer token lengths slow individual iterations due to transformers' quadratic complexity, they reduce overall training time by needing fewer iterations. Using curated text-media pairs, our Lumina-T2X efficiently produces high-quality images and videos.
+                Increasing token length in transformers extends iteration times but **reduces overall training duration by decreasing the number of iterations needed**. Moreover, our Lumina-T2X model can generate high-resolution images and coherent videos **with minimal computational demands**. Remarkably, the default Lumina-T2I configuration, equipped with a 5B Flag-DiT and a 7B LLaMA as text encoder, **requires only 20% of the computational resources needed by Pixelart-**$\alpha$.
             </>
         ),
     },
-    {
-        title: 'Support Model, Sequence Parallel and FSDP',
-        Svg: require('../../static/img/features/node-requests.svg').default,
-        description: (
-            <>
-                The velocity prediction backbone of Lumina-T2X are highly deeply rooted from the architecture of Large Language Models (LLMs). 
-                Thus, it can easily shard model weights, sequence length, optimizer states, weight storage and gradient communications across GPUs for scaling model size and sequence length. This practice can significantly increase the upper bound of model parameters and sequence length supported by Lumina-T2X framework. 
-            </>
-        ),
-    },
+    // {
+    //     title: 'Support Model, Sequence Parallel and FSDP',
+    //     Svg: require('../../static/img/features/node-requests.svg').default,
+    //     description: (
+    //         <>
+    //             The velocity prediction backbone of Lumina-T2X are highly deeply rooted from the architecture of Large Language Models (LLMs). 
+    //             Thus, it can easily shard model weights, sequence length, optimizer states, weight storage and gradient communications across GPUs for scaling model size and sequence length. This practice can significantly increase the upper bound of model parameters and sequence length supported by Lumina-T2X framework. 
+    //         </>
+    //     ),
+    // },
 ];
 
 function Feature({ Svg, title, description }) {

@@ -241,7 +241,7 @@ export default function Home() {
             <DemoPage />
             <Features />
             <Highlights />
-            <ActorExample />
+            {/* <ActorExample /> */}
             {/* <Deployment /> */}
             {/* <div className="container">
                 <div className="row">

@@ -19,23 +19,23 @@ const DemoList = [
         buttonLink: 'https://example.com',
         buttonText: 'Click Here'
     },
-    {
-        imgUrl: '/img/demo_gallery/improved_highres_img_gen.png',
-        title: 'Improved High-Resolution Image Generation',
-        text: '',
-        buttonLink: '',
-        buttonText: ''
-    },
+    // {
+    //     imgUrl: '/img/demo_gallery/improved_highres_img_gen.png',
+    //     title: 'Improved High-Resolution Image Generation',
+    //     text: '',
+    //     buttonLink: '',
+    //     buttonText: ''
+    // },
     {
         imgUrl: '/img/demo_gallery/arbitrary_resolution_ratio_gen_part_1.png',
-        title: 'Arbitrary Resolutions & Ratio Generations',
+        title: 'Arbitrary Aspect Ratio Generation',
         text: '',
         buttonLink: '',
         buttonText: ''
     },
     {
         imgUrl: '/img/demo_gallery/arbitrary_resolution_ratio_gen_part_2.png',
-        title: 'Arbitrary Resolutions & Ratio Generations',
+        title: 'Arbitrary Aspect Ratio Generation',
         text: '',
         buttonLink: '',
         buttonText: ''
@@ -64,6 +64,13 @@ const DemoList = [
     {
         imgUrl: '/img/demo_gallery/multi_cap_gen_2.png',
         title: 'Compositional Generation',
+        text: '',
+        buttonLink: '',
+        buttonText: ''
+    },
+    {
+        imgUrl: '/img/demo_gallery/edit/edit_01.png',
+        title: 'High-res. Image Editing',
         text: '',
         buttonLink: '',
         buttonText: ''
@@ -129,7 +136,7 @@ function DemoPage() {
     return (
         <section className={clsx(styles.try, 'container')}>
             <div className="col" style={{ maxWidth: "1000px" }}>
-                <h2>Demos of Lumina-T2I</h2>
+                <h2>Lumina-T2I - Image Generation</h2>
                 <Carousel
                     showArrows={true}
                     autoPlay={true}
