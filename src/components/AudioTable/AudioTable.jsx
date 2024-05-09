@@ -63,11 +63,15 @@ function AudioItem({
         <tbody>
         <tr>
             <td>
+                <b>Generated Audio:</b>
+                <br/>
                 <audio controls="controls">
                     <source src={auUrl} autoplay="" />
                 </audio>
             </td>
             <td>
+                <b>Groundtruth:</b>
+                <br/>
                 <audio controls="controls">
                     <source src={augtUrl} autoplay="" />
                 </audio>
